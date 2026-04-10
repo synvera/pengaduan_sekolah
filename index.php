@@ -1,46 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Login</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
+
 </head>
 <style>
-    body{
-        height: 90vh;
-        justify-content: center;
-        align-items: center;
-        display: flex;
-    }
-    .container {
-        width: 300px;
-        margin: 0 auto;
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    h1 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    
-    form{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    input[type="text"],
-    input[type="password"] {
-        width: 90%;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-    }
-    
-    button {
+    button{
         width: 100%;
         padding: 10px;
         background-color: #007bff;
@@ -49,43 +31,85 @@
         border-radius: 3px;
         cursor: pointer;
     }
-    
-    button:hover {
-        background-color: #0056b3;
-    }
 </style>
-<body>
-<div class="container">
-    <h1>Login Siswa</h1>
-    <?php
-        $error_nis = isset($_GET['error_nis']) ? $_GET['error_nis'] : '';
-        $error_username = isset($_GET['error_username']) ? $_GET['error_username'] : '';
-        $error_kelas = isset($_GET['error_kelas']) ? $_GET['error_kelas'] : '';
-        $nis = isset($_GET['nis']) ? htmlspecialchars($_GET['nis']) : '';
-        $username = isset($_GET['username']) ? htmlspecialchars($_GET['username']) : '';
-        $kelas = isset($_GET['kelas']) ? htmlspecialchars($_GET['kelas']) : '';
-    ?>
-    <form action="proses/login_siswa.php" method="post" style="width:100%">
-        <input type="text" name="nis" placeholder="Masukan NIS" value="<?= $nis ?>" required>
-        <?php if ($error_nis): ?>
-            <div style="color:red; font-size:12px; margin-bottom:8px; width:100%; text-align:left;">
-                <?= $error_nis ?>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                    </div>
+                                    <form action="proses/login_siswa.php" method="POST" class="user">
+                                        <div class="form-group">
+                                            <input type="nama" name="nama" class="form-control form-control-user"
+                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                placeholder="Enter name...">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" name="password" class="form-control form-control-user"
+                                                id="exampleInputPassword" placeholder="Password">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <label class="custom-control-label" for="customCheck">Remember
+                                                    Me</label>
+                                            </div>
+                                        </div>
+                                        <button type="submit">Login</button>
+                                        <hr>
+                                        <a href="index.html" class="btn btn-google btn-user btn-block">
+                                            <i class="fab fa-google fa-fw"></i> Login with Google
+                                        </a>
+                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                                        </a>
+                                        <a href="admin.php">
+                                            Login with admin
+                                        </a>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href="register.html">Create an Account!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        <?php endif; ?>
-        <input type="text" name="username" placeholder="Masukan Nama Siswa" value="<?= $username ?>" required>
-        <?php if ($error_username): ?>
-            <div style="color:red; font-size:12px; margin-bottom:8px; width:100%; text-align:left;">
-                <?= $error_username ?>
-            </div>
-        <?php endif; ?>
-        <input type="text" name="kelas" placeholder="Masukan Kelas" value="<?= $kelas ?>" required>
-        <?php if ($error_kelas): ?>
-            <div style="color:red; font-size:12px; margin-bottom:8px; width:100%; text-align:left;">
-                <?= $error_kelas ?>
-            </div>
-        <?php endif; ?>
-        <button type="submit">Login</button>
-    </form>
-</div>
+
+        </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="assets/js/sb-admin-2.min.js"></script>
+
 </body>
+
 </html>
