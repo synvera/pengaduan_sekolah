@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>Pengaduan sekolah - Login</title>
 
     <!-- Custom fonts for this template-->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -28,7 +28,7 @@
         background-color: #007bff;
         color: #fff;
         border: none;
-        border-radius: 3px;
+        border-radius: 25px;
         cursor: pointer;
     }
 </style>
@@ -71,12 +71,6 @@
                                         </div>
                                         <button type="submit">Login</button>
                                         <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a>
                                         <a href="admin.php">
                                             Login with admin
                                         </a>
