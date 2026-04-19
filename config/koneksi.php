@@ -9,8 +9,6 @@ $koneksi = mysqli_connect($host, $uss, $pw, $db);
 
 if (!$koneksi) {
     die("Koneksi Gagal");
-} else {
-    echo "koneksi berhasil";
 }
 
 ?>

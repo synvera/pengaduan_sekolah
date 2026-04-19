@@ -14,8 +14,6 @@ if (!$pw) {
     exit;
 }
 
-
-$query_nis = "SELECT * FROM siswa WHERE nama='$uss'";
 // Cek user di database
 $query = "SELECT * FROM siswa WHERE nama='$uss'";
 $result = mysqli_query($koneksi, $query);
