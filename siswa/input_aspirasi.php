@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -101,6 +104,7 @@
     </style>
 </head>
 
+
 <body>
 
 <div id="wrapper">
@@ -116,33 +120,33 @@
         <div class="content-center">
             <div class="card">
 
-                <form action="../proses/simpan_aspirasi.php" method="POST">
+            <form action="../proses/simpan_aspirasi.php" method="POST">
 
-                    <div class="form-group">
-                        <label>Judul Aspirasi</label>
-                        <input type="text" name="judul" class="form-control" placeholder="Contoh: Toilet rusak" required>
-                    </div>
+    <input type="hidden" name="nis" value="<?php echo $_SESSION['nis']; ?>">
 
-                    <div class="form-group">
-                        <label>Kategori</label>
-                        <select name="kategori" class="form-control" required>
-                            <option value="">-- Pilih Kategori --</option>
-                            <option value="Fasilitas">Fasilitas</option>
-                            <option value="Kebersihan">Kebersihan</option>
-                            <option value="Pelayanan">Pelayanan</option>
-                        </select>
-                    </div>
+    <div class="form-group">
+        <label>Kategori</label>
+        <select name="kategori" class="form-control" required>
+            <option value="">-- Pilih --</option>
+            <option value="1">Fasilitas</option>
+            <option value="2">Kebersihan</option>
+            <option value="3">Pelayanan</option>
+        </select>
+    </div>
 
-                    <div class="form-group">
-                        <label>Isi Aspirasi</label>
-                        <textarea name="isi" rows="5" class="form-control" placeholder="Tulis aspirasi kamu..." required></textarea>
-                    </div>
+    <div class="form-group">
+        <label>Lokasi</label>
+        <input type="text" name="lokasi" class="form-control" required>
+    </div>
 
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i> Kirim Aspirasi
-                    </button>
+    <div class="form-group">
+        <label>Isi</label>
+        <textarea name="isi" class="form-control" required></textarea>
+    </div>
 
-                </form>
+    <button type="submit" class="btn btn-primary">Kirim</button>
+
+</form>
 
             </div>
         </div>

@@ -2,36 +2,34 @@
 session_start();
 include '../config/koneksi.php';
 
-$uss = $_POST['nama'];
-$pw = $_POST['password'];
+$nama = $_POST['nama'];
+$password = $_POST['password'];
 
-if (!$uss) {
-    header("Location: ../index.php?error_username=Nama tidak boleh kosong&nis=" . urlencode($nis) . "&kelas=" . urlencode($pw));
-    exit;
-}
-if (!$pw) {
-    header("Location: ../index.php?error_kelas=Kelas tidak boleh kosong&nis=" . urlencode($nis) . "&username=" . urlencode($uss));
+if (!$nama || !$password) {
+    header("Location: ../index.php?error=Isi semua data");
     exit;
 }
 
-// Cek user di database
-$query = "SELECT * FROM siswa WHERE nama='$uss'";
-$result = mysqli_query($koneksi, $query);
+$query = mysqli_query($koneksi, "SELECT * FROM siswa WHERE nama='$nama'");
 
-if ($result && mysqli_num_rows($result) > 0) {
-    $data = mysqli_fetch_assoc($result);
-    // Cek password
-    if ($pw == $data['password']) {
+if (mysqli_num_rows($query) > 0) {
+    $data = mysqli_fetch_assoc($query);
+
+    if ($password == $data['password']) {
+
+        $_SESSION['nis']  = $data['nis'];
         $_SESSION['nama'] = $data['nama'];
-        $_SESSION['id_siswa'] = $data['id_siswa'];
+
         header("Location: ../siswa/dashboard.php");
         exit;
+
     } else {
-        header("Location: ../index.php?error_password=Password salah");
+        header("Location: ../index.php?error=Password salah");
         exit;
     }
+
 } else {
-    header("Location: ../index.php?error_username=Nama tidak ditemukan");
+    header("Location: ../index.php?error=User tidak ditemukan");
     exit;
 }
 ?>

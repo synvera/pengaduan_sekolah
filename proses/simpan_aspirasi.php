@@ -1,46 +1,31 @@
 <?php
-session_start();
 include '../config/koneksi.php';
 
-// Ambil data
-$judul    = $_POST['judul'];
-$kategori = $_POST['kategori'];
-$isi      = $_POST['isi'];
+// Ambil dari form (BUKAN session lagi)
+$nis         = $_POST['nis'];
+$id_kategori = $_POST['kategori'];
+$lokasi      = $_POST['lokasi'];
+$keterangan  = $_POST['isi'];
 
-// Ambil id siswa dari session
-$id_siswa = $_SESSION['id_siswa'];
-
-// Validasi
-if (!$judul) {
-    header("Location: input_aspirasi.php?error=Judul tidak boleh kosong");
-    exit;
-}
-
-if (!$kategori) {
-    header("Location: input_aspirasi.php?error=Kategori tidak boleh kosong");
-    exit;
-}
-
-if (!$isi) {
-    header("Location: input_aspirasi.php?error=Isi aspirasi tidak boleh kosong");
-    exit;
-}
-
-// Default
-$status = "pending";
+$status  = "menunggu";
 $tanggal = date("Y-m-d H:i:s");
 
-// Query simpan
-$query = "INSERT INTO aspirasi (id_siswa, judul, kategori, isi, status, tanggal)
-          VALUES ('$id_siswa', '$judul', '$kategori', '$isi', '$status', '$tanggal')";
-
-$result = mysqli_query($koneksi, $query);
-
-if ($result) {
-    header("Location: dashboard.php?success=Aspirasi berhasil dikirim");
+// Validasi simpel
+if (!$nis || !$id_kategori || !$lokasi || !$keterangan) {
+    echo "Data tidak lengkap";
     exit;
+}
+
+// Query
+$query = "INSERT INTO aspirasi (nis, id_kategori, lokasi, keterangan, status, tanggal)
+          VALUES ('$nis', '$id_kategori', '$lokasi', '$keterangan', '$status', '$tanggal')";
+
+if (mysqli_query($koneksi, $query)) {
+    echo "<script>
+        alert('Aspirasi berhasil dikirim');
+        window.location='../siswa/dashboard.php';
+    </script>";
 } else {
-    header("Location: input_aspirasi.php?error=Gagal menyimpan data");
-    exit;
+    echo "Gagal: " . mysqli_error($koneksi);
 }
 ?>

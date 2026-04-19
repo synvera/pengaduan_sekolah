@@ -107,7 +107,7 @@ body {
 
 /* LIST */
 .aduan-item {
-    padding: 12px;
+    padding: 32px;
     border-bottom: 1px solid #eee;
     display: flex;
     justify-content: space-between;
@@ -118,7 +118,7 @@ body {
 .badge {
     padding: 5px 10px;
     border-radius: 6px;
-    font-size: 0.75rem;
+    font-size: 1rem;
     color: white;
 }
 .proses { background: orange; }
@@ -234,7 +234,7 @@ echo mysqli_error($koneksi);
 
                     <?php
                         $s = strtolower($r['status']);
-                        if($s == 'diproses') echo "<span class='badge proses'>Diproses</span>";
+                        if($s == 'menunggu') echo "<span class='badge proses'>Diproses</span>";
                         elseif($s == 'selesai') echo "<span class='badge selesai'>Selesai</span>";
                         else echo "<span class='badge tolak'>Ditolak</span>";
                     ?>
